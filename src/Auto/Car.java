@@ -1,15 +1,19 @@
 package Auto;
 
-public class Car extends Transport implements Competing{
+public class Car extends Transport implements Competing {
     private double pitStopTime;
     private Integer maxSpeed;
     private double bestLapTime;
+    private BodyType bodyType;
 
-    public Car(String brand, String model, double engineVolume, double pitStopTime, Integer maxSpeed, double bestLapTime) {
+    public Car(String brand, String model,
+               double engineVolume, double pitStopTime,
+               Integer maxSpeed, double bestLapTime, BodyType bodyType) {
         super(brand, model, engineVolume);
         this.pitStopTime = pitStopTime;
         this.maxSpeed = maxSpeed;
         this.bestLapTime = bestLapTime;
+        this.bodyType = bodyType;
     }
 
     @Override
@@ -21,6 +25,20 @@ public class Car extends Transport implements Competing{
     void finish() {
         System.out.println("Автомобиль остановился");
     }
+
+    @Override
+    public void printType() {
+        if (bodyType == null) {
+            System.out.println("Данных по авто недостаточно!");
+        } else {
+            System.out.println("Тип кузова авто - " + bodyType);
+        }
+    }
+
+    public BodyType getBodyType() {
+        return bodyType;
+    }
+
     public void getPitStop() {
         System.out.println("Pit-stop длился " + pitStopTime);
     }
@@ -35,7 +53,11 @@ public class Car extends Transport implements Competing{
 
     @Override
     public String toString() {
-        return getBrand()+ " "+ getModel() + ", "+getEngineVolume()+ ", время пит-стопа - "+ pitStopTime+ " секунды, "
-                +maxSpeed+ " км/ч, лучшее время круга - " + bestLapTime + " минуты";
+        return getBrand() + " " + getModel() + ", " + getEngineVolume() + ", время пит-стопа - " + pitStopTime + " секунды, "
+                + maxSpeed + " км/ч, лучшее время круга - " + bestLapTime + " минуты. Тип кузова - " + bodyType.name();
+
     }
+
+
+
 }

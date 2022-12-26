@@ -41,6 +41,8 @@ public abstract class Transport {
 
     abstract void finish();
 
+    public abstract void printType();
+
 
     public static String validateBrand(String value) {
         return ValidateUtils.validateString(value, "Некорректное значение");
